@@ -65,12 +65,6 @@ const config: PanelsConfig = {
           context: ful,
           attributes: { title: 'Fullscreen' },
         },
-        {
-          id: expt,
-          className: 'fa fa-code',
-          command: expt,
-          attributes: { title: 'View code' },
-        },
       ],
     },
     {
@@ -83,20 +77,6 @@ const config: PanelsConfig = {
           active: true,
           togglable: false,
           attributes: { title: 'Open Style Manager' },
-        },
-        {
-          id: otm,
-          className: 'fa fa-cog',
-          command: otm,
-          togglable: false,
-          attributes: { title: 'Settings' },
-        },
-        {
-          id: ola,
-          className: 'fa fa-bars',
-          command: ola,
-          togglable: false,
-          attributes: { title: 'Open Layer Manager' },
         },
         {
           id: obl,

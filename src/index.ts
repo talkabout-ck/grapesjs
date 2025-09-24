@@ -4,7 +4,6 @@ import { EditorConfig } from './editor/config/config';
 import PluginManager, { Plugin, getPlugin, logPluginWarn } from './plugin_manager';
 import $ from './utils/cash-dom';
 import polyfills from './utils/polyfills';
-
 interface InitEditorConfig extends EditorConfig {
   grapesjs?: typeof grapesjs;
 }
