@@ -120,6 +120,16 @@ export default class BlockManager extends ItemManagerModule<BlockManagerConfig, 
 
     this.__onAllEvent = debounce(() => this.__trgCustom(), 0);
 
+    //add the blocks
+    const configBlocks = this.getConfig('blocks');
+    if (Array.isArray(configBlocks)) {
+      configBlocks.forEach(block => {
+        if (block.id && !this.get(block.id)) {
+          this.add(block.id, block);
+        }
+      });
+    }
+
     return this;
   }
 

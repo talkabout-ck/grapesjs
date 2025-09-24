@@ -1,5 +1,6 @@
 import Editor from '../../editor';
 import Block, { BlockProperties } from '../model/Block';
+import blockPresets from '../model/BlockPresets';
 
 export interface BlockManagerConfig {
   /**
@@ -40,7 +41,7 @@ export interface BlockManagerConfig {
 
 const config: BlockManagerConfig = {
   appendTo: '',
-  blocks: [],
+  blocks: blockPresets,
   appendOnClick: false,
   custom: false,
 };
