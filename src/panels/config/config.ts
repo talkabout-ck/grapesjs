@@ -1,7 +1,10 @@
 import { PanelProperties } from '../model/Panel';
 
 const swv = 'sw-visibility';
+const expt = 'export-template';
 const osm = 'open-sm';
+const otm = 'open-tm';
+const ola = 'open-layers';
 const obl = 'open-blocks';
 const ful = 'fullscreen';
 const prv = 'preview';
