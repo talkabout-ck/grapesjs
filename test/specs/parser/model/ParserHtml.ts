@@ -115,14 +115,14 @@ describe('ParserHtml', () => {
   });
 
   test('Parse images nodes', () => {
-    var str = '<img id="test1" src="./index.html"/>';
+    var str = '<img id="test1" src="./_index.html"/>';
     var result = [
       {
         tagName: 'img',
         type: 'image',
         attributes: {
           id: 'test1',
-          src: './index.html',
+          src: './_index.html',
         },
       },
     ];

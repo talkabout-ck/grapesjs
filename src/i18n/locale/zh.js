@@ -10,7 +10,7 @@ export default {
   domComponents: {
     names: {
       '': 'Box',
-      wrapper: 'Body',
+      wrapper: '背景',
       text: '文字',
       comment: '评论',
       image: '图片',
@@ -24,6 +24,7 @@ export default {
       table: '表格',
       row: '行',
       cell: '单元格',
+      div: '区块',
     },
   },
   deviceManager: {
@@ -31,8 +32,8 @@ export default {
     devices: {
       desktop: '桌面',
       tablet: '平板',
-      mobileLandscape: 'Mobile Landscape',
-      mobilePortrait: 'Mobile Portrait',
+      mobileLandscape: '手机横屏',
+      mobilePortrait: '手机竖屏',
     },
   },
   panels: {
@@ -45,7 +46,7 @@ export default {
         'open-sm': '打开样式管理器',
         'open-tm': '设置',
         'open-layers': '打开布局管理器',
-        'open-blocks': '打开块',
+        'open-blocks': '打开组件管理器',
       },
     },
   },

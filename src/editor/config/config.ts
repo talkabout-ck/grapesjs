@@ -439,7 +439,7 @@ const config: EditorConfig = {
   width: '100%',
   log: ['warning', 'error'],
   baseCss: '',
-  protectedCss: '* { box-sizing: border-box; } body {margin: 0;}',
+  protectedCss: '* { box-sizing: border-box; } body { margin: 0; }',
   canvasCss: '',
   defaultCommand: 'select-comp',
   showToolbar: true,

@@ -69,25 +69,9 @@ export interface StyleManagerConfig {
 export default {
   sectors: [
     {
-      name: 'General',
-      open: false,
-      properties: ['display', 'float', 'position', 'top', 'right', 'left', 'bottom'],
-    },
-    {
       name: 'Flex',
       open: false,
-      properties: [
-        'flex-direction',
-        'flex-wrap',
-        'justify-content',
-        'align-items',
-        'align-content',
-        'order',
-        'flex-basis',
-        'flex-grow',
-        'flex-shrink',
-        'align-self',
-      ],
+      properties: ['flex-direction', 'justify-content', 'align-items'],
     },
     {
       name: 'Dimension',
@@ -111,7 +95,7 @@ export default {
     {
       name: 'Decorations',
       open: false,
-      properties: ['background-color', 'border-radius', 'border', 'box-shadow', 'background'],
+      properties: ['background-color', 'border', 'border-radius', 'box-shadow', 'background'],
     },
     {
       name: 'Extra',

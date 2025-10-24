@@ -264,8 +264,8 @@ export default class PropertyFactory {
       ['opacity', { type: this.typeSlider, default: '1', min: 0, max: 1, step: 0.01, full: true }],
 
       // Select types
-      ['display', { type: this.typeSelect, default: 'block', options: this.opstDisplay }],
-      ['flex-direction', { default: 'row', options: this.optsDir, requires: requireFlex }, 'display'],
+      ['display', { type: this.typeSelect, default: 'flex', options: this.opstDisplay }],
+      ['flex-direction', { default: 'row', options: this.optsDir, requiresParent: requireFlex }, 'display'],
       ['flex-wrap', { default: 'nowrap', options: this.optsWrap }, 'flex-direction'],
       ['justify-content', { default: 'flex-start', options: this.optsJustCont }, 'flex-wrap'],
       ['align-items', { default: 'stretch', options: this.optsFlexAlign }, 'flex-wrap'],

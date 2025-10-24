@@ -212,7 +212,7 @@ export default class Sector extends Model<SectorProperties> {
 
   /**
    * Build properties
-   * @param {Array<string>} propr Array of props as sting
+   * @param {Array<string>} props Array of props as sting
    * @return {Array<Object>}
    * @private
    */

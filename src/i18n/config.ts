@@ -40,9 +40,9 @@ export interface I18nConfig {
 
 const config: I18nConfig = {
   locale: 'zh',
-  localeFallback: 'zh',
+  localeFallback: 'en',
   detectLocale: true,
-  debug: false,
+  debug: true,
   messages: { en, zh },
   messagesAdd: undefined,
 };

@@ -87,7 +87,6 @@ export const grapesjs = {
     em.loadOnStart();
     initConfig.autorender && !headless && editor.render();
     editors.push(editor);
-
     return editor;
   },
 };
