@@ -85,6 +85,13 @@ const config: PanelsConfig = {
           attributes: { title: 'Open Style Manager' },
         },
         {
+          id: otm,
+          className: 'fa fa-cog',
+          command: otm,
+          togglable: false,
+          attributes: { title: 'Settings' },
+        },
+        {
           id: ola,
           className: 'fa fa-bars',
           command: ola,
