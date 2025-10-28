@@ -265,7 +265,7 @@ export default class PropertyFactory {
 
       // Select types
       ['display', { type: this.typeSelect, default: 'flex', options: this.opstDisplay }],
-      ['flex-direction', { default: 'row', options: this.optsDir, requiresParent: requireFlex }, 'display'],
+      ['flex-direction', { default: 'row', options: this.optsDir, requires: requireFlex }, 'display'],
       ['flex-wrap', { default: 'nowrap', options: this.optsWrap }, 'flex-direction'],
       ['justify-content', { default: 'flex-start', options: this.optsJustCont }, 'flex-wrap'],
       ['align-items', { default: 'stretch', options: this.optsFlexAlign }, 'flex-wrap'],

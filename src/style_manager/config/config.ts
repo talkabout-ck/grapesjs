@@ -71,7 +71,7 @@ export default {
     {
       name: 'Flex',
       open: false,
-      properties: ['flex-direction', 'justify-content', 'align-items'],
+      properties: ['flex-direction', 'justify-content', 'align-items', 'flex-basis', 'flex-grow', 'flex-shrink'],
     },
     {
       name: 'Dimension',

@@ -1,37 +1,114 @@
 import { BlockProperties } from './Block';
 
-// 所有预设 block 的集合
 const blockPresets: BlockProperties[] = [
   {
-    id: 'header',
-    label: '页头',
-    content: '<header><h1>欢迎访问</h1></header>',
+    id: 'div',
+    label: 'Div',
+    category: 'Basic',
+    content: {
+      type: 'div',
+      style: {
+        display: 'flex',
+        'flex-wrap': 'wrap',
+        padding: '50px',
+      },
+    },
+  },
+  {
+    id: 'img',
+    label: 'Img',
+    category: 'Basic',
+    content: {
+      type: 'image',
+    },
+  },
+  {
+    id: 'text',
+    label: 'Text',
+    category: 'Basic',
+    content: {
+      type: 'text',
+      content: 'Edit me!',
+      style: {
+        margin: '0 0 16px 0',
+        'font-size': '16px',
+        'line-height': '1.5',
+        color: '#000000',
+      },
+    },
+  },
+  {
+    id: 'video',
+    label: 'Video',
+    category: 'Basic',
+    content: {
+      type: 'video',
+    },
+  },
+  {
+    id: 'navbar',
+    label: 'Navbar',
     category: 'Layout',
-    media: `<svg viewBox="0 0 24 24" width="24" height="24">
-      <rect x="2" y="4" width="20" height="6" rx="2" stroke="#666" fill="none"/>
-    </svg>`,
+    content: {
+      type: 'nav',
+      style: {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        'z-index': '1000',
+        'background-color': '#000000',
+        padding: '50px 20px',
+        display: 'flex',
+        'flex-wrap': 'nowrap',
+      },
+    },
   },
   {
-    id: 'text-btn',
-    label: '文本+按钮',
-    content: { type: 'text' },
-    activate: true,
-    category: 'Content',
-    media: `<svg viewBox="0 0 24 24" width="24" height="24">
-      <text x="12" y="16" font-size="14" text-anchor="middle">T</text>
-    </svg>`,
-  },
-  {
-    id: 'image-block',
-    label: '图片',
-    content: { type: 'image' },
-    category: 'Media',
-    activate: true,
-    media: `<svg viewBox="0 0 24 24" width="24" height="24">
-      <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
-      <circle cx="8.5" cy="8.5" r="1.5"/>
-      <path d="M21 15l-5-5L5 21"/>
-    </svg>`,
+    id: 'gallery',
+    label: 'Gallery',
+    category: 'Layout',
+    content: {
+      type: 'div',
+      style: {
+        display: 'flex',
+        'flex-wrap': 'wrap',
+        padding: '20px',
+        'justify-content': 'space-evenly',
+      },
+      components: [
+        {
+          type: 'div',
+          style: {
+            display: 'flex',
+            padding: '80px',
+            'flex-basis': '24%',
+            'justify-content': 'center',
+          },
+          components: [{ type: 'image' }],
+        },
+        {
+          type: 'div',
+          style: {
+            display: 'flex',
+            padding: '80px',
+            'flex-basis': '24%',
+            'justify-content': 'center',
+          },
+          components: [{ type: 'image' }],
+        },
+        {
+          type: 'div',
+          style: {
+            display: 'flex',
+            padding: '80px',
+            'flex-basis': '24%',
+            'justify-content': 'center',
+          },
+          components: [{ type: 'image' }],
+        },
+      ],
+    },
   },
 ];
 
