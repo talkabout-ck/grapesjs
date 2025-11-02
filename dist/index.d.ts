@@ -6346,7 +6346,7 @@ export declare class Sector extends Model<SectorProperties> {
 	checkExtend(prop: any): PropertyProps;
 	/**
 	 * Build properties
-	 * @param {Array<string>} propr Array of props as sting
+	 * @param {Array<string>} props Array of props as sting
 	 * @return {Array<Object>}
 	 * @private
 	 */
