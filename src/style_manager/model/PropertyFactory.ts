@@ -123,19 +123,19 @@ export default class PropertyFactory {
       'center bottom',
     ]);
     this.optsWeight = [
-      { id: '100', label: 'Thin' },
-      { id: '200', label: 'Extra-Light' },
-      { id: '300', label: 'Light' },
-      { id: '400', label: 'Normal' },
-      { id: '500', label: 'Medium' },
-      { id: '600', label: 'Semi-Bold' },
-      { id: '700', label: 'Bold' },
-      { id: '800', label: 'Extra-Bold' },
-      { id: '900', label: 'Ultra-Bold' },
+      { id: '100', label: '极细' },
+      { id: '200', label: '细' },
+      { id: '300', label: '较细' },
+      { id: '400', label: '正常' },
+      { id: '500', label: '较粗' },
+      { id: '600', label: '粗' },
+      { id: '700', label: '加粗' },
+      { id: '800', label: '极粗' },
+      { id: '900', label: '超粗' },
     ];
     this.optsShadowType = [
-      { id: '', label: 'Outside' },
-      { id: 'inset', label: 'Inside' },
+      { id: '', label: '外' },
+      { id: 'inset', label: '内' },
     ];
     this.optsFonts = [
       'Arial, Helvetica' + ss,
