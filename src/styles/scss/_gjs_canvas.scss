@@ -241,7 +241,7 @@ $guide_pad: 5px !default;
   .#{$app-prefix}highlighter,
   .#{$app-prefix}highlighter-sel {
     position: absolute;
-    outline: 1px solid $colorBlue;
+    outline: 1px solid $colorBlack;
     outline-offset: -1px;
     pointer-events: none;
     width: 100%;
@@ -253,7 +253,7 @@ $guide_pad: 5px !default;
   }
 
   .#{$app-prefix}highlighter-sel {
-    outline: 2px solid $colorBlue;
+    outline: 2px solid $colorBlack;
     outline-offset: -2px;
   }
 
@@ -298,7 +298,7 @@ $guide_pad: 5px !default;
 
 .#{$app-prefix}toolbar {
   position: absolute;
-  background-color: $colorBlue;
+  background-color: $colorBlack;
   white-space: nowrap;
   color: white;
   z-index: 10;
@@ -342,7 +342,7 @@ $guide_pad: 5px !default;
   @include opacity(0.1);
 
   position: absolute;
-  background-color: yellow;
+  background-color: #808080;
 }
 
 .#{$app-prefix}fixedmargin-v-el,
@@ -352,13 +352,13 @@ $guide_pad: 5px !default;
 
 .#{$app-prefix}padding-v-el,
 .#{$app-prefix}fixedpadding-v-el {
-  background-color: navy;
+  background-color: $colorBlack;
 }
 
 .#{$app-prefix}resizer-h {
   pointer-events: all;
   position: absolute;
-  border: 3px solid $colorBlue;
+  border: 3px solid $colorBlack;
   width: 10px;
   height: 10px;
   background-color: #fff;
@@ -493,3 +493,4 @@ $guide_pad: 5px !default;
     @include opacity(0.7);
   }
 }
+

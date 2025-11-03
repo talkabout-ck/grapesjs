@@ -337,7 +337,7 @@ export default class FrameView extends ModuleView<Frame, HTMLIFrameElement> {
     win._isEditor = true;
     this.renderStyles({ prev: [] });
 
-    const colorWarn = '#ffca6f';
+    const colorWarn = '#808080';
 
     append(
       body,
@@ -355,7 +355,7 @@ export default class FrameView extends ModuleView<Frame, HTMLIFrameElement> {
       }
 
       .${ppfx}selected {
-        outline: 2px solid #3b97e3 !important;
+        outline: 2px solid #000000 !important;
         outline-offset: -2px;
       }
 
@@ -384,7 +384,7 @@ export default class FrameView extends ModuleView<Frame, HTMLIFrameElement> {
         height: 100px;
         width: 100px;
         display: block;
-        outline: 3px solid #ffca6f;
+        outline: 3px solid #808080;
         cursor: pointer;
         outline-offset: -2px
       }

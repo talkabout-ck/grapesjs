@@ -84,8 +84,8 @@ $colorsAll: (one, $primaryColor),
   }
 
   &-hl {
-    color: $colorHighlight;
-    fill: $colorHighlight;
+    color: $colorBlack;
+    fill: $colorBlack;
   }
 }
 
@@ -130,7 +130,7 @@ $colorsAll: (one, $primaryColor),
 }
 
 .#{$app-prefix}drag-helper {
-  background-color: $colorBlue !important;
+  background-color: $colorBlack !important;
   pointer-events: none !important;
   position: absolute !important;
   z-index: 10 !important;
@@ -227,7 +227,7 @@ $colorsAll: (one, $primaryColor),
 
 .#{$com-prefix}badge, .#{$app-prefix}badge{
 	pointer-events: none;
-	background-color: $colorBlue;
+	background-color: $colorBlack;
 	color: #fff;
 	padding: 2px 5px;
 	position: absolute; z-index: 1;
@@ -301,9 +301,9 @@ $colorsAll: (one, $primaryColor),
 .#{$app-prefix}category-title {
   @extend .no-select;
 
-  font-weight: lighter;
+  font-weight: 400;
   background-color: $mainDklColor;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   padding: 9px 10px 9px 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   text-align: left;
@@ -374,11 +374,11 @@ $colorsAll: (one, $primaryColor),
 	&##{$cm-prefix}htmlmixed {
 		padding-right: 10px;
 		border-right: 1px solid $mainDkColor;
-		##{$cm-prefix}title { color: #a97d44;}
+		##{$cm-prefix}title { color: #808080;}
 	}
 	&##{$cm-prefix}css {
 		padding-left: 10px;
-		##{$cm-prefix}title { color: #ddca7e;}
+		##{$cm-prefix}title { color: #808080;}
 	}
 	##{$cm-prefix}title {
 	  background-color: $mainDkColor;
