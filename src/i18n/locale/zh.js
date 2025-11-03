@@ -205,6 +205,33 @@ export default {
         translateX: 'X 轴平移',
         translateY: 'Y 轴平移',
       },
+      'background-repeat-sub': {
+        repeat: '重复平铺',
+        'repeat-x': '横向平铺',
+        'repeat-y': '纵向平铺',
+        'no-repeat': '不平铺',
+      },
+      'background-attachment-sub': {
+        scroll: '随页面滚动',
+        fixed: '固定',
+        local: '局部滚动',
+      },
+      'background-size-sub': {
+        auto: '自动',
+        cover: '覆盖',
+        contain: '包含',
+      },
+      'background-position-sub': {
+        'left top': '左上',
+        'left center': '左中',
+        'left bottom': '左下',
+        'right top': '右上',
+        'right center': '右中',
+        'right bottom': '右下',
+        'center top': '中上',
+        'center center': '居中',
+        'center bottom': '中下',
+      },
     },
   },
   traitManager: {
