@@ -13,6 +13,7 @@ export default class ComponentVideo extends ComponentImage {
     return {
       // @ts-ignore
       ...super.defaults,
+      src: '',
       type,
       tagName: type,
       videoId: '',
@@ -24,11 +25,7 @@ export default class ComponentVideo extends ComponentImage {
       muted: 0,
       autoplay: false,
       controls: true,
-      blAutoplay: false,
-      blMuted: false,
-      blLoop: false,
       blDanmaku: false,
-      blQuality: '',
       sources: [],
       attributes: { allowfullscreen: 'allowfullscreen' },
     };
@@ -93,15 +90,11 @@ export default class ComponentVideo extends ComponentImage {
     const qr = uri.query;
     switch (prov) {
       case bl:
-        let videoId = qr.bvid || qr.aid;
+        let videoId = qr.bvid;
         if (videoId) {
           this.set('videoId', videoId);
         }
-        hasParam(qr.autoplay) && this.set('blAutoplay', true);
-        hasParam(qr.mute) && this.set('blMuted', true);
-        hasParam(qr.loop) && this.set('blLoop', true);
         hasParam(qr.danmaku) && this.set('blDanmaku', true);
-        hasParam(qr.quality) && this.set('blQuality', true);
         break;
       default:
     }
@@ -144,9 +137,6 @@ export default class ComponentVideo extends ComponentImage {
 
     // 添加参数
     const params = [];
-    if (this.get('blAutoplay')) params.push('autoplay=1');
-    if (this.get('blMute')) params.push('mute=1');
-    if (this.get('blLoop')) params.push('loop=1');
     params.push(`danmaku=${this.get('blDanmaku') ? 1 : 0}`); // 弹幕
 
     if (params.length > 0) {
@@ -230,22 +220,9 @@ export default class ComponentVideo extends ComponentImage {
     return [
       this.getProviderTrait(),
       {
-        label: 'BV/AV ID',
+        label: '链接',
         name: 'videoId',
         placeholder: '输入Bilibili视频链接',
-        changeProp: true,
-      },
-      this.getAutoplayTrait(), // 传入自定义 name
-      {
-        type: 'checkbox',
-        label: '静音',
-        name: 'blMute',
-        changeProp: true,
-      },
-      {
-        type: 'checkbox',
-        label: '循环',
-        name: 'blLoop',
         changeProp: true,
       },
       {
