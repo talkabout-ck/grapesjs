@@ -77,6 +77,7 @@ const commandsDef = [
   ['component-delete', 'ComponentDelete'],
   ['component-style-clear', 'ComponentStyleClear'],
   ['component-drag', 'ComponentDrag'],
+  ['image-editor', 'ImageEditor', 'image-editor'],
 ];
 
 export default class CommandsModule extends Module<CommandsConfig & { pStylePrefix?: string }> {

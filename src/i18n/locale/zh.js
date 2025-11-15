@@ -163,10 +163,10 @@ export default {
         stretch: '填满容器',
       },
       'text-align': {
-        left: '靠左对齐',
-        center: '居中对齐',
-        right: '靠右对齐',
-        justify: '两端对齐',
+        left: '靠左',
+        center: '居中',
+        right: '靠右',
+        justify: '两端',
       },
       'border-style-sub': {
         none: '无',

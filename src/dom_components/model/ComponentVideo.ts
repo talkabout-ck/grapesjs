@@ -3,9 +3,7 @@ import { isDef, isEmptyObj, toLowerCase } from '../../utils/mixins';
 import ComponentImage from './ComponentImage';
 
 const type = 'video';
-const yt = 'yt';
-const vi = 'vi';
-const ytnc = 'ytnc';
+const bl = 'bl';
 const defProvider = 'so';
 
 const hasParam = (value: string) => value && value !== '0';
@@ -20,18 +18,17 @@ export default class ComponentVideo extends ComponentImage {
       videoId: '',
       void: false,
       provider: defProvider, // on change of provider, traits are switched
-      ytUrl: 'https://www.youtube.com/embed/',
-      ytncUrl: 'https://www.youtube-nocookie.com/embed/',
-      viUrl: 'https://player.vimeo.com/video/',
+      blUrl: 'https://player.bilibili.com/player.html?bvid=',
       loop: false,
       poster: '',
       muted: 0,
       autoplay: false,
       controls: true,
-      color: '',
-      list: '',
-      rel: 1, // YT related videos
-      modestbranding: 0, // YT modest branding
+      blAutoplay: false,
+      blMuted: false,
+      blLoop: false,
+      blDanmaku: false,
+      blQuality: '',
       sources: [],
       attributes: { allowfullscreen: 'allowfullscreen' },
     };
@@ -73,12 +70,8 @@ export default class ComponentVideo extends ComponentImage {
     let traits;
 
     switch (prov) {
-      case yt:
-      case ytnc:
-        traits = this.getYoutubeTraits();
-        break;
-      case vi:
-        traits = this.getVimeoTraits();
+      case bl:
+        traits = this.getBilibiliTraits();
         break;
       default:
         tagName = 'video';
@@ -99,17 +92,16 @@ export default class ComponentVideo extends ComponentImage {
     const uri = this.parseUri(this.get('src'));
     const qr = uri.query;
     switch (prov) {
-      case yt:
-      case ytnc:
-      case vi:
-        this.set('videoId', uri.pathname.split('/').pop());
-        qr.list && this.set('list', qr.list);
-        hasParam(qr.autoplay) && this.set('autoplay', true);
-        hasParam(qr.loop) && this.set('loop', true);
-        parseInt(qr.controls) === 0 && this.set('controls', false);
-        hasParam(qr.color) && this.set('color', qr.color);
-        qr.rel === '0' && this.set('rel', 0);
-        qr.modestbranding === '1' && this.set('modestbranding', 1);
+      case bl:
+        let videoId = qr.bvid || qr.aid;
+        if (videoId) {
+          this.set('videoId', videoId);
+        }
+        hasParam(qr.autoplay) && this.set('blAutoplay', true);
+        hasParam(qr.mute) && this.set('blMuted', true);
+        hasParam(qr.loop) && this.set('blLoop', true);
+        hasParam(qr.danmaku) && this.set('blDanmaku', true);
+        hasParam(qr.quality) && this.set('blQuality', true);
         break;
       default:
     }
@@ -124,20 +116,45 @@ export default class ComponentVideo extends ComponentImage {
     let src = '';
 
     switch (prov) {
-      case yt:
-        src = this.getYoutubeSrc();
-        break;
-      case ytnc:
-        src = this.getYoutubeNoCookieSrc();
-        break;
-      case vi:
-        src = this.getVimeoSrc();
+      case bl:
+        src = this.getBilibiliSrc();
         break;
     }
 
     this.set({ src });
   }
 
+  /**
+   * Returns url to Bilibili video
+   * @return {string}
+   * @private
+   */
+  getBilibiliSrc() {
+    // 从 videoId 中提取 BV 号
+    let videoId = this.get('videoId');
+    if (videoId && videoId.includes('bilibili.com')) {
+      const match = videoId.match(/BV[a-zA-Z0-9]+/);
+      videoId = match ? match[0] : '';
+    }
+
+    if (!videoId) return this.get('blUrl'); // 如果没有 ID，返回基础 URL
+
+    let url = this.get('blUrl') as string; // 'https://player.bilibili.com/player.html?bvid='
+    url += videoId;
+
+    // 添加参数
+    const params = [];
+    if (this.get('blAutoplay')) params.push('autoplay=1');
+    if (this.get('blMute')) params.push('mute=1');
+    if (this.get('blLoop')) params.push('loop=1');
+    params.push(`danmaku=${this.get('blDanmaku') ? 1 : 0}`); // 弹幕
+
+    if (params.length > 0) {
+      url += '&' + params.join('&');
+    }
+
+    return url;
+  }
   /**
    * Returns object of attributes for HTML
    * @return {Object}
@@ -148,9 +165,7 @@ export default class ComponentVideo extends ComponentImage {
     const prov = this.get('provider');
 
     switch (prov) {
-      case yt:
-      case ytnc:
-      case vi:
+      case bl:
         break;
       default:
         attr.loop = !!this.get('loop');
@@ -176,9 +191,7 @@ export default class ComponentVideo extends ComponentImage {
       changeProp: true,
       options: [
         { value: 'so', name: 'HTML5 Source' },
-        { value: yt, name: 'Youtube' },
-        { value: ytnc, name: 'Youtube (no cookie)' },
-        { value: vi, name: 'Vimeo' },
+        { value: bl, name: 'Bilibili' },
       ],
     };
   }
@@ -207,60 +220,40 @@ export default class ComponentVideo extends ComponentImage {
       this.getControlsTrait(),
     ];
   }
-  /**
-   * Return traits for the source provider
-   * @return {Array<Object>}
-   * @private
-   */
-  getYoutubeTraits() {
-    return [
-      this.getProviderTrait(),
-      {
-        label: 'Video ID',
-        name: 'videoId',
-        placeholder: 'eg. jNQXAC9IVRw',
-        changeProp: true,
-      },
-      this.getAutoplayTrait(),
-      this.getLoopTrait(),
-      this.getControlsTrait(),
-      {
-        type: 'checkbox',
-        label: 'Related',
-        name: 'rel',
-        changeProp: true,
-      },
-      {
-        type: 'checkbox',
-        label: 'Modest',
-        name: 'modestbranding',
-        changeProp: true,
-      },
-    ];
-  }
 
   /**
-   * Return traits for the source provider
+   * Return traits for the Bilibili provider
    * @return {Array<Object>}
    * @private
    */
-  getVimeoTraits() {
+  getBilibiliTraits() {
     return [
       this.getProviderTrait(),
       {
-        label: 'Video ID',
+        label: 'BV/AV ID',
         name: 'videoId',
-        placeholder: 'eg. 123456789',
+        placeholder: '输入Bilibili视频链接',
+        changeProp: true,
+      },
+      this.getAutoplayTrait(), // 传入自定义 name
+      {
+        type: 'checkbox',
+        label: '静音',
+        name: 'blMute',
         changeProp: true,
       },
       {
-        label: 'Color',
-        name: 'color',
-        placeholder: 'eg. FF0000',
+        type: 'checkbox',
+        label: '循环',
+        name: 'blLoop',
         changeProp: true,
       },
-      this.getAutoplayTrait(),
-      this.getLoopTrait(),
+      {
+        type: 'checkbox',
+        label: '显示弹幕',
+        name: 'blDanmaku',
+        changeProp: true,
+      },
     ];
   }
 
@@ -306,66 +299,15 @@ export default class ComponentVideo extends ComponentImage {
     };
   }
 
-  /**
-   * Returns url to youtube video
-   * @return {string}
-   * @private
-   */
-  getYoutubeSrc() {
-    const id = this.get('videoId');
-    let url = this.get('ytUrl') as string;
-    const list = this.get('list');
-    url += id + (id.indexOf('?') < 0 ? '?' : '');
-    url += list ? `&list=${list}` : '';
-    url += this.get('autoplay') ? '&autoplay=1&muted=1' : '';
-    url += !this.get('controls') ? '&controls=0&showinfo=0' : '';
-    // Loop works only with playlist enabled
-    // https://stackoverflow.com/questions/25779966/youtube-iframe-loop-doesnt-work
-    url += this.get('loop') ? `&loop=1&playlist=${id}` : '';
-    url += this.get('rel') ? '' : '&rel=0';
-    url += this.get('modestbranding') ? '&modestbranding=1' : '';
-    return url;
-  }
-
-  /**
-   * Returns url to youtube no cookie video
-   * @return {string}
-   * @private
-   */
-  getYoutubeNoCookieSrc() {
-    let url = this.getYoutubeSrc();
-    url = url.replace(this.get('ytUrl'), this.get('ytncUrl'));
-    return url;
-  }
-
-  /**
-   * Returns url to vimeo video
-   * @return {string}
-   * @private
-   */
-  getVimeoSrc() {
-    let url = this.get('viUrl') as string;
-    url += this.get('videoId') + '?';
-    url += this.get('autoplay') ? '&autoplay=1&muted=1' : '';
-    url += this.get('loop') ? '&loop=1' : '';
-    url += !this.get('controls') ? '&title=0&portrait=0&badge=0' : '';
-    url += this.get('color') ? '&color=' + this.get('color') : '';
-    return url;
-  }
-
   static isComponent(el: HTMLVideoElement) {
     const { tagName, src } = el;
-    const isYtProv = /youtube\.com\/embed/.test(src);
-    const isYtncProv = /youtube-nocookie\.com\/embed/.test(src);
-    const isViProv = /player\.vimeo\.com\/video/.test(src);
-    const isExtProv = isYtProv || isYtncProv || isViProv;
+    const isBlProv = /player\.bilibili\.com\/player\.html/.test(src);
+    const isExtProv = isBlProv;
     if (toLowerCase(tagName) == type || (toLowerCase(tagName) == 'iframe' && isExtProv)) {
       const result: any = { type: 'video' };
       if (src) result.src = src;
       if (isExtProv) {
-        if (isYtProv) result.provider = yt;
-        else if (isYtncProv) result.provider = ytnc;
-        else if (isViProv) result.provider = vi;
+        if (isBlProv) result.provider = bl;
       }
       return result;
     }
