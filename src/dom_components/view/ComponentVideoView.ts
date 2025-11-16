@@ -1,5 +1,3 @@
-// src/dom_components/view/ComponentVideoView.ts
-
 import ComponentVideo from '../model/ComponentVideo';
 import ComponentImageView from './ComponentImageView';
 import ComponentView from './ComponentView';
