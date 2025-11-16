@@ -47,14 +47,7 @@ export default class ComponentVideoView extends ComponentImageView {
     const { model, videoEl } = this;
     if (!videoEl) return; // 如果 videoEl 不存在，则无法更新
 
-    const prov = model.get('provider');
-    let src = model.get('src'); // 默认使用模型的 src
-
-    switch (prov) {
-      case 'bl': // Bilibili
-        src = model.getBilibiliSrc(); // 调用模型的 Bilibili URL 生成方法
-        break;
-    }
+    let src = model.get('src');
 
     videoEl.src = src;
   }
@@ -128,9 +121,7 @@ export default class ComponentVideoView extends ComponentImageView {
    */
   renderBilibili() {
     const el = document.createElement('iframe');
-    el.src = this.model.getBilibiliSrc();
-    el.frameBorder = '0'; // 设置边框为 0
-    el.setAttribute('allowfullscreen', 'true'); // 允许全屏
+    el.src = this.model.get('src');
     this.initVideoEl(el); // 应用通用样式
     return el;
   }

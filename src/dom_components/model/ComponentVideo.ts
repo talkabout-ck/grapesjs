@@ -1,6 +1,7 @@
 import { ObjectAny } from '../../common';
 import { isDef, isEmptyObj, toLowerCase } from '../../utils/mixins';
 import ComponentImage from './ComponentImage';
+import fa from '../../i18n/locale/fa';
 
 const type = 'video';
 const bl = 'bl';
@@ -24,7 +25,7 @@ export default class ComponentVideo extends ComponentImage {
       poster: '',
       muted: 0,
       autoplay: false,
-      controls: true,
+      controls: false,
       blDanmaku: false,
       sources: [],
       attributes: { allowfullscreen: 'allowfullscreen' },
